@@ -1,10 +1,15 @@
-import React, { useState } from "react";
-import app, { auth } from "../utility/firebase";
+import React, { useEffect, useState } from "react";
 import Auth from "./auth/Auth";
 import Home from "./home/Home";
 
 const App = () => {
-  const [isLogin, setIsLogin] = useState(auth.currentUser);
+  const [isLogin, setIsLogin] = useState();
+
+  useEffect(() => {
+    fetch("/api/auth/checkUser")
+      .then((response) => response.json())
+      .then((data) => setIsLogin(data.user));
+  });
   return <>{isLogin ? <Home /> : <Auth />}</>;
 };
 
