@@ -1,18 +1,36 @@
 import React from "react";
-import { useRouter } from "next/router";
-import { getAuth, signOut } from "firebase/auth";
+import useInput from "../../hooks/useInput";
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../../utility/firebase";
 
 const Home = () => {
-  const router = useRouter();
-  const auth = getAuth();
-
-  const logOutHandler = () => {
-    signOut(auth);
+  const [pweet, onChangePweet, setPweet] = useInput();
+  const onSubmitHandler = async (e) => {
+    e.preventDefault();
+    if (pweet.length > 0) {
+      try {
+        await addDoc(collection(db, "pweet"), {
+          pweet,
+          createAt: Date.now(),
+        });
+      } catch (e) {
+        console.error("Error adding document: ", e);
+      }
+    }
+    setPweet("");
   };
   return (
     <>
-      <div>Home</div>
-      <button onClick={logOutHandler}>Log out</button>
+      <form onSubmit={onSubmitHandler}>
+        <input
+          value={pweet}
+          placeholder="무슨 생각하고 계시나요?"
+          type="text"
+          onChange={onChangePweet}
+          maxLength={120}
+        />
+        <input type="submit" value="Pwitter" />
+      </form>
     </>
   );
 };

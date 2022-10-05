@@ -4,6 +4,9 @@ import { auth } from "../../utility/firebase";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  GoogleAuthProvider,
+  GithubAuthProvider,
+  signInWithPopup,
 } from "firebase/auth";
 
 const Auth = () => {
@@ -11,6 +14,13 @@ const Auth = () => {
   const [password, onChangePassword, setPassword] = useInput();
   const [newAccount, setNewAccount] = useState(false);
   const [error, setError] = useState("");
+
+  const errorHandler = (error) => {
+    let message = error.message;
+    const n = error.message.indexOf(" ");
+    message = message.slice(n);
+    setError(message);
+  };
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
@@ -22,10 +32,7 @@ const Auth = () => {
           setPassword("");
         })
         .catch((error) => {
-          let message = error.message;
-          const n = error.message.indexOf(" ");
-          message = message.slice(n);
-          setError(message);
+          errorHandler(error);
         });
     } else {
       signInWithEmailAndPassword(auth, email, password)
@@ -34,15 +41,29 @@ const Auth = () => {
           setPassword("");
         })
         .catch((error) => {
-          let message = error.message;
-          const n = error.message.indexOf(" ");
-          message = message.slice(n);
-          setError(message);
+          errorHandler(error);
         });
     }
   };
 
   const toggleNewAccount = () => setNewAccount((prev) => !prev);
+
+  const loginHandler = (e) => {
+    const {
+      target: { name },
+    } = e;
+    let provider;
+    if (name === "google") {
+      provider = new GoogleAuthProvider();
+    } else {
+      provider = new GithubAuthProvider();
+    }
+    signInWithPopup(auth, provider)
+      .then((result) => {})
+      .catch((error) => {
+        errorHandler(error);
+      });
+  };
 
   return (
     <>
@@ -64,8 +85,12 @@ const Auth = () => {
         {newAccount ? "Sign In" : "Create Account"}
       </span>
       <div>
-        <button>Continue with Google</button>
-        <button>Continue with Github</button>
+        <button name="google" onClick={loginHandler}>
+          Continue with Google
+        </button>
+        <button name="github" onClick={loginHandler}>
+          Continue with Github
+        </button>
       </div>
     </>
   );
