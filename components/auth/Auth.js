@@ -1,30 +1,48 @@
 import React, { useState } from "react";
 import useInput from "../../hooks/useInput";
+import { auth } from "../../utility/firebase";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 
 const Auth = () => {
   const [email, onChangeEmail, setEmail] = useInput();
   const [password, onChangePassword, setPassword] = useInput();
-  const [newAccount, setNewAccount] = useState(true);
+  const [newAccount, setNewAccount] = useState(false);
+  const [error, setError] = useState("");
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
 
     if (newAccount) {
-      const res = await fetch("api/auth/createAccount", {
-        method: "POST",
-        body: JSON.stringify({ email, password }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      const data = await res.json();
-      console.log(data);
+      createUserWithEmailAndPassword(auth, email, password)
+        .then(() => {
+          setEmail("");
+          setPassword("");
+        })
+        .catch((error) => {
+          let message = error.message;
+          const n = error.message.indexOf(" ");
+          message = message.slice(n);
+          setError(message);
+        });
     } else {
+      signInWithEmailAndPassword(auth, email, password)
+        .then(() => {
+          setEmail("");
+          setPassword("");
+        })
+        .catch((error) => {
+          let message = error.message;
+          const n = error.message.indexOf(" ");
+          message = message.slice(n);
+          setError(message);
+        });
     }
-
-    setEmail("");
-    setPassword("");
   };
+
+  const toggleNewAccount = () => setNewAccount((prev) => !prev);
 
   return (
     <>
@@ -36,8 +54,15 @@ const Auth = () => {
           onChange={onChangePassword}
           required
         />
-        <input type="submit" value={newAccount ? "Sign In" : "Login"} />
+        <input
+          type="submit"
+          value={newAccount ? "Create Account" : "Sign In"}
+        />
+        {error}
       </form>
+      <span onClick={toggleNewAccount}>
+        {newAccount ? "Sign In" : "Create Account"}
+      </span>
       <div>
         <button>Continue with Google</button>
         <button>Continue with Github</button>
