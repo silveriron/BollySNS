@@ -1,10 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import useInput from "../../hooks/useInput";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, getDocs } from "firebase/firestore";
 import { db } from "../../utility/firebase";
 
 const Home = () => {
   const [pweet, onChangePweet, setPweet] = useInput();
+  const [pweets, setPweets] = useState([]);
+
+  const getPweets = async () => {
+    const data = await getDocs(collection(db, "pweet"));
+    const pweetList = [];
+    data.forEach((doc) => {
+      const pweetObject = {
+        ...doc.data(),
+        id: doc.id,
+      };
+      pweetList.push(pweetObject);
+    });
+    setPweets(pweetList);
+  };
+
+  useEffect(() => {
+    getPweets();
+  }, []);
+
   const onSubmitHandler = async (e) => {
     e.preventDefault();
     if (pweet.length > 0) {
@@ -19,6 +38,7 @@ const Home = () => {
     }
     setPweet("");
   };
+
   return (
     <>
       <form onSubmit={onSubmitHandler}>
@@ -31,6 +51,15 @@ const Home = () => {
         />
         <input type="submit" value="Pwitter" />
       </form>
+      <div>
+        {pweets.map((pweet) => {
+          return (
+            <div key={pweet.id}>
+              <p>{pweet.pweet}</p>
+            </div>
+          );
+        })}
+      </div>
     </>
   );
 };
