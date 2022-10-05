@@ -7,11 +7,13 @@ import Home from "./home/Home";
 const App = () => {
   const [init, setInit] = useState(false);
   const [isLogin, setIsLogin] = useState();
+  const [userObj, setUserObj] = useState();
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         setIsLogin(true);
+        setUserObj(user);
       } else {
         setIsLogin(false);
       }
@@ -19,7 +21,11 @@ const App = () => {
     });
   }, []);
 
-  return <>{init ? isLogin ? <Home /> : <Auth /> : <p>Loading</p>}</>;
+  return (
+    <>
+      {init ? isLogin ? <Home userObj={userObj} /> : <Auth /> : <p>Loading</p>}
+    </>
+  );
 };
 
 export default App;

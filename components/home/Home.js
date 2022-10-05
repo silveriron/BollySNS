@@ -1,27 +1,22 @@
 import React, { useEffect, useState } from "react";
 import useInput from "../../hooks/useInput";
-import { collection, addDoc, getDocs } from "firebase/firestore";
+import { collection, addDoc, onSnapshot } from "firebase/firestore";
 import { db } from "../../utility/firebase";
+import Pweet from "./Pweet";
 
-const Home = () => {
+const Home = ({ userObj }) => {
   const [pweet, onChangePweet, setPweet] = useInput();
   const [pweets, setPweets] = useState([]);
 
-  const getPweets = async () => {
-    const data = await getDocs(collection(db, "pweet"));
-    const pweetList = [];
-    data.forEach((doc) => {
-      const pweetObject = {
-        ...doc.data(),
-        id: doc.id,
-      };
-      pweetList.push(pweetObject);
-    });
-    setPweets(pweetList);
-  };
-
   useEffect(() => {
-    getPweets();
+    onSnapshot(collection(db, "pweet"), (snapshot) => {
+      const pweetArray = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      pweetArray.sort((a, b) => b.createAt - a.createAt);
+      setPweets(pweetArray);
+    });
   }, []);
 
   const onSubmitHandler = async (e) => {
@@ -29,8 +24,9 @@ const Home = () => {
     if (pweet.length > 0) {
       try {
         await addDoc(collection(db, "pweet"), {
-          pweet,
+          text: pweet,
           createAt: Date.now(),
+          creatorId: userObj.uid,
         });
       } catch (e) {
         console.error("Error adding document: ", e);
@@ -44,7 +40,7 @@ const Home = () => {
       <form onSubmit={onSubmitHandler}>
         <input
           value={pweet}
-          placeholder="무슨 생각하고 계시나요?"
+          placeholder="어떤 생각을 하고 계시나요?"
           type="text"
           onChange={onChangePweet}
           maxLength={120}
@@ -54,9 +50,11 @@ const Home = () => {
       <div>
         {pweets.map((pweet) => {
           return (
-            <div key={pweet.id}>
-              <p>{pweet.pweet}</p>
-            </div>
+            <Pweet
+              key={pweet.id}
+              pweetObj={pweet}
+              isOwner={pweet.creatorId === userObj.uid}
+            />
           );
         })}
       </div>
