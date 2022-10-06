@@ -10,9 +10,9 @@ const Header = () => {
         <li>
           <Link href="/">Home</Link>
         </li>
-        {user && (
+        {user.uid && (
           <li>
-            <Link href="/profile">profile</Link>
+            <Link href="/profile">{`${user.name}의 프로필`}</Link>
           </li>
         )}
       </ul>
