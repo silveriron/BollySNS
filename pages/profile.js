@@ -1,21 +1,8 @@
 import React from "react";
-import { useRouter } from "next/router";
-import { getAuth, signOut } from "firebase/auth";
+import Profile from "../components/profile/Profile";
 
 const profile = () => {
-  const router = useRouter();
-  const auth = getAuth();
-
-  const logOutHandler = () => {
-    signOut(auth);
-    router.push("/");
-  };
-
-  return (
-    <div>
-      <button onClick={logOutHandler}>Sign out</button>
-    </div>
-  );
+  return <Profile />;
 };
 
 export default profile;

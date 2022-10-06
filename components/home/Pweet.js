@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { doc, deleteDoc, setDoc } from "firebase/firestore";
-import { db } from "../../utility/firebase";
+import { db, storage } from "../../utility/firebase";
+import { ref, deleteObject } from "firebase/storage";
 import useInput from "../../hooks/useInput";
+import Image from "next/image";
 
 const Pweet = ({ pweetObj, isOwner }) => {
   const [editing, setEditing] = useState(false);
@@ -11,6 +13,13 @@ const Pweet = ({ pweetObj, isOwner }) => {
       "정말 삭제하시겠습니까? 삭제 후에는 복구가 불가능 합니다."
     );
     if (ok) {
+      if (pweetObj.imageUrl) {
+        const desertRef = ref(
+          storage,
+          `${pweetObj.creatorId}/${pweetObj.imageName}`
+        );
+        await deleteObject(desertRef);
+      }
       await deleteDoc(doc(db, "pweet", pweetObj.id));
     }
   };
@@ -28,6 +37,14 @@ const Pweet = ({ pweetObj, isOwner }) => {
 
   return (
     <div>
+      {pweetObj.imageUrl && (
+        <Image
+          src={pweetObj.imageUrl}
+          width="100"
+          height="100"
+          alt={pweetObj.text}
+        />
+      )}
       {editing ? (
         <form onSubmit={updateHandler}>
           <input
