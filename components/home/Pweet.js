@@ -39,7 +39,7 @@ const Pweet = ({ pweetObj, isOwner }) => {
   };
 
   return (
-    <div>
+    <li>
       {pweetObj.imageUrl && (
         <Image
           src={pweetObj.imageUrl}
@@ -77,7 +77,7 @@ const Pweet = ({ pweetObj, isOwner }) => {
           <button onClick={toggleEditing}>Update Pweet</button>
         </>
       )}
-    </div>
+    </li>
   );
 };
 
