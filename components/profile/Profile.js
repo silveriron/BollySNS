@@ -18,16 +18,18 @@ const Profile = () => {
   const [newUserName, onChangeUserName] = useInput(user.name);
 
   useEffect(() => {
-    const myPweetRef = collection(db, "pweet");
-    const q = query(myPweetRef, where("creatorId", "==", user.uid));
-    onSnapshot(q, (snapshot) => {
-      const pweetArray = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      pweetArray.sort((a, b) => b.createAt - a.createAt);
-      setPweets(pweetArray);
-    });
+    if (user.uid) {
+      const myPweetRef = collection(db, "pweet");
+      const q = query(myPweetRef, where("creatorId", "==", user.uid));
+      onSnapshot(q, (snapshot) => {
+        const pweetArray = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        pweetArray.sort((a, b) => b.createAt - a.createAt);
+        setPweets(pweetArray);
+      });
+    }
   }, []);
 
   const logOutHandler = () => {
