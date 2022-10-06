@@ -19,6 +19,7 @@ const App = () => {
             name: user.displayName,
             email: user.email,
             uid: user.uid,
+            photoURL: user.photoURL,
           })
         );
       }

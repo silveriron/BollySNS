@@ -11,10 +11,12 @@ export const userSlice = createSlice({
         state.name = null;
         state.email = null;
         state.uid = null;
+        state.photoURL = null;
       } else {
         state.name = action.payload.name;
         state.email = action.payload.email;
         state.uid = action.payload.uid;
+        state.photoURL = action.payload.photoURL;
       }
     },
   },
