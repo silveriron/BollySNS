@@ -3,8 +3,9 @@ import Image from "next/image";
 import Input from "../UI/Input";
 import useImageUpload from "../../hooks/useImageUpload";
 import useInput from "../../hooks/useInput";
-import pweetSubmit from "../../utility/pweet";
+import pweetSubmit from "../../utility/pweetSubmit";
 import { useSelector } from "react-redux";
+import ImagePreview from "../UI/ImagePreview";
 
 const PweetForm = () => {
   const [pweet, onChangePweet, setPweet] = useInput();
@@ -18,16 +19,9 @@ const PweetForm = () => {
     setImage(null);
   };
 
-  const onClearImageHandler = () => setImage(null);
-
   return (
     <form onSubmit={onSubmitHandler}>
-      {image && (
-        <div>
-          <Image src={image} alt={image} width="200" height="200" />
-          <button onClick={onClearImageHandler}>Clear</button>
-        </div>
-      )}
+      {image && <ImagePreview image={image} setImage={setImage} />}
       <Input
         value={pweet}
         placeholder="어떤 생각을 하고 계시나요?"

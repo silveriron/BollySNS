@@ -6,7 +6,7 @@ const Home = () => {
   return (
     <>
       <PweetForm />
-      <PweetList />
+      <PweetList category="all" />
     </>
   );
 };

@@ -1,18 +1,9 @@
-import { v4 as uuidv4 } from "uuid";
-import { ref, uploadString, getDownloadURL } from "firebase/storage";
 import { db, storage } from "./firebase";
 import { collection, addDoc } from "firebase/firestore";
+import uploadImage from "./uploadImage";
 
 const pweetSubmit = async (image, pweet, uid) => {
-  let imageUrl = null;
-  let imageName = null;
-  if (image) {
-    imageName = uuidv4();
-    const storageRef = ref(storage, `${uid}/${imageName}`);
-    const response = await uploadString(storageRef, image, "data_url");
-    imageUrl = await getDownloadURL(ref(storageRef));
-  }
-
+  const [imageName, imageUrl] = await uploadImage(image, uid);
   const pweetObj = {
     text: pweet,
     createAt: Date.now(),

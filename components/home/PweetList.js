@@ -3,20 +3,14 @@ import { collection, onSnapshot } from "firebase/firestore";
 import { db } from "../../utility/firebase";
 import Pweet from "./Pweet";
 import { useSelector } from "react-redux";
+import getPweet from "../../utility/getPweet";
 
-const PweetList = () => {
+const PweetList = ({ category }) => {
   const [pweets, setPweets] = useState([]);
   const user = useSelector((state) => state.user);
 
   useEffect(() => {
-    onSnapshot(collection(db, "pweet"), (snapshot) => {
-      const pweetArray = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      pweetArray.sort((a, b) => b.createAt - a.createAt);
-      setPweets(pweetArray);
-    });
+    getPweet(category, setPweets, user);
   }, []);
 
   return (
