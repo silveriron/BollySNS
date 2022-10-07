@@ -1,11 +1,11 @@
 import React from "react";
-import PweetForm from "./PweetForm";
+import PweetPostForm from "./PweetPostForm";
 import PweetList from "./PweetList";
 
 const Home = () => {
   return (
     <>
-      <PweetForm />
+      <PweetPostForm />
       <PweetList category="all" />
     </>
   );

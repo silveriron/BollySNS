@@ -7,7 +7,7 @@ import pweetSubmit from "../../utility/pweetSubmit";
 import { useSelector } from "react-redux";
 import ImagePreview from "../UI/ImagePreview";
 
-const PweetForm = () => {
+const PweetPostForm = () => {
   const [pweet, onChangePweet, setPweet] = useInput();
   const [image, setImage, imageUploadHandler] = useImageUpload();
   const user = useSelector((state) => state.user);
@@ -35,4 +35,4 @@ const PweetForm = () => {
   );
 };
 
-export default PweetForm;
+export default PweetPostForm;
