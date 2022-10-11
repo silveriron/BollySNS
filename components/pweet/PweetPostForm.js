@@ -13,7 +13,7 @@ const PweetPostForm = () => {
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
-    pweetSubmit(image, pweet, user.uid);
+    pweetSubmit(image, pweet, user);
     setPweet("");
     setImage(null);
   };

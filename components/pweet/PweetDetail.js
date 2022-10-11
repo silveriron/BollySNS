@@ -3,6 +3,7 @@ import Image from "next/image";
 import PweetEditButton from "./PweetEditButton";
 import PweetEditForm from "./PweetEditForm";
 import PweetLike from "./PweetLike";
+import HeroImage from "../UI/HeroImage";
 
 const PweetDetail = ({ pweetObj, user }) => {
   const [editing, setEditing] = useState(false);
@@ -10,6 +11,7 @@ const PweetDetail = ({ pweetObj, user }) => {
 
   return (
     <li>
+      <HeroImage data={pweetObj} category="pweet" />
       {pweetObj.imageUrl && (
         <Image
           src={pweetObj.imageUrl}
