@@ -6,6 +6,8 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { auth } from "../../utility/firebase";
+import styles from "./AuthForm.module.css";
+import Button from "../UI/Button";
 
 const AuthForm = () => {
   const [email, onChangeEmail, setEmail] = useInput();
@@ -52,16 +54,23 @@ const AuthForm = () => {
 
   return (
     <form onSubmit={onSubmitHandler}>
-      <Input type="text" value={email} onChange={onChangeEmail} required />
+      <Input
+        type="text"
+        value={email}
+        onChange={onChangeEmail}
+        placeholder="계정을 입력해주세요."
+        required
+      />
       <Input
         type="password"
         value={password}
         onChange={onChangePassword}
+        placeholder="비밀번호를 입력해주세요."
         required
       />
-      <Input type="submit" value={newAccount ? "Create Account" : "Sign In"} />
-      <div onClick={toggleNewAccount}>
-        {newAccount ? "Sign In" : "Create Account"}
+      <Button type="submit">{newAccount ? "가입하기" : "로그인하기"}</Button>
+      <div className={styles.toggle} onClick={toggleNewAccount}>
+        {newAccount ? "계정이 이미 있습니다." : "계정이 없습니다."}
       </div>
       {error && <p>{error}</p>}
     </form>

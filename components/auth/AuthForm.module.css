@@ -1,0 +1,10 @@
+.toggle {
+    width: 250px;
+    text-align: center;
+    color: rgb(65, 167, 235);
+}
+
+.toggle:hover {
+    cursor: pointer;
+    color: rgb(49, 150, 218);
+}

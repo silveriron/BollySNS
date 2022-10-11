@@ -10,7 +10,7 @@ const getUser = () => {
         const objStore = transaction.objectStore("firebaseLocalStorage");
         const objStoreReq = objStore.openCursor();
         objStoreReq.onsuccess = (e) => {
-          resolve(e.target.result.value.value);
+          resolve(e.target?.result?.value.value);
         };
         objStoreReq.onerror = (e) => {
           reject(e);

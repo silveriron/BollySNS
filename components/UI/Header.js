@@ -6,6 +6,7 @@ import { auth } from "../../utility/firebase";
 import { useDispatch } from "react-redux";
 import { userActions } from "../../store/userSlice";
 import { useRouter } from "next/router";
+import styles from "./header.module.css";
 
 const Header = () => {
   const user = useSelector((state) => state.user);
@@ -18,7 +19,7 @@ const Header = () => {
     router.push("/");
   };
   return (
-    <nav>
+    <nav className={styles.nav}>
       <ul>
         <li>
           <Link href="/">Home</Link>

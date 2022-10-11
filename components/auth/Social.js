@@ -5,6 +5,7 @@ import {
   GithubAuthProvider,
   signInWithPopup,
 } from "firebase/auth";
+import styles from "./Social.module.css";
 
 const Social = () => {
   const loginHandler = (e) => {
@@ -23,12 +24,12 @@ const Social = () => {
   };
 
   return (
-    <div>
+    <div className={styles.btn}>
       <button name="google" onClick={loginHandler}>
-        Continue with Google
+        Google 계정으로 가입하기
       </button>
       <button name="github" onClick={loginHandler}>
-        Continue with Github
+        Github 계정으로 가입하기
       </button>
     </div>
   );
