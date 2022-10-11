@@ -1,5 +1,4 @@
 import React from "react";
-import Image from "next/image";
 import Input from "../UI/Input";
 import useImageUpload from "../../hooks/useImageUpload";
 import useInput from "../../hooks/useInput";

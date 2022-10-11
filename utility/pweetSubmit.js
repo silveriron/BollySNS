@@ -10,6 +10,7 @@ const pweetSubmit = async (image, pweet, uid) => {
     creatorId: uid,
     imageUrl,
     imageName,
+    liked: [],
   };
   try {
     await addDoc(collection(db, "pweet"), pweetObj);

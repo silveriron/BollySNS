@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import Image from "next/image";
 import PweetEditButton from "./PweetEditButton";
 import PweetEditForm from "./PweetEditForm";
+import PweetLike from "./PweetLike";
 
-const PweetDetail = ({ pweetObj, isOwner }) => {
+const PweetDetail = ({ pweetObj, user }) => {
   const [editing, setEditing] = useState(false);
+  const isOwner = pweetObj.creatorId === user.uid;
 
   return (
     <li>
@@ -21,7 +23,7 @@ const PweetDetail = ({ pweetObj, isOwner }) => {
       ) : (
         <p>{pweetObj.text}</p>
       )}
-
+      <PweetLike isOwner={isOwner} user={user} pweetObj={pweetObj} />
       {isOwner && (
         <PweetEditButton setEditing={setEditing} pweetObj={pweetObj} />
       )}

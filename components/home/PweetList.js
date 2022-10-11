@@ -17,13 +17,7 @@ const PweetList = ({ category }) => {
   return (
     <ul>
       {pweets.map((pweet) => {
-        return (
-          <PweetDetail
-            key={pweet.id}
-            pweetObj={pweet}
-            isOwner={pweet.creatorId === user.uid}
-          />
-        );
+        return <PweetDetail key={pweet.id} pweetObj={pweet} user={user} />;
       })}
     </ul>
   );
