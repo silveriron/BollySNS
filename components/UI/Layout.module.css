@@ -6,7 +6,6 @@
 .main {
     border-left: 1px solid var(--line-color);
     border-right: 1px solid var(--line-color);
-    height: 200vh;
     width: 100%;
     max-width: 600px;
 }
