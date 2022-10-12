@@ -1,0 +1,15 @@
+.postBtnBox {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.postBtnBox button {
+    margin: 0 5px 10px;
+    
+    width: 100px;
+}
+
+.btn {
+    background: white;
+}

@@ -1,0 +1,30 @@
+.postBox {
+    display: flex;
+}
+
+
+.postTextBox {
+    width: 80%;
+    margin: auto 0;
+}
+
+.postBtnBox {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.postBtnBox button {
+    margin: 0 20px;
+    width: 100px;
+}
+
+.fileUpload {
+    display: none;
+}
+
+.formContainer {
+    border-bottom:  1px solid var(--line-color);
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}

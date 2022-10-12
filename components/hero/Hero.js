@@ -5,9 +5,9 @@ import HeroImage from "../UI/HeroImage";
 const Hero = () => {
   const user = useSelector((state) => state.user);
   return (
-    <section>
+    <>
       <HeroImage data={user} category="hero" />
-    </section>
+    </>
   );
 };
 

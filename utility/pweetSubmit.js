@@ -6,7 +6,7 @@ const pweetSubmit = async (image, pweet, user) => {
   const [imageName, imageUrl] = await uploadImage(image, user.uid);
   const pweetObj = {
     text: pweet,
-    createAt: Date.now(),
+    createAt: new Date(),
     creatorName: user.name,
     creatorId: user.uid,
     creatorImage: user.photoURL,

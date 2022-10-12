@@ -1,0 +1,14 @@
+.menuBox {
+    background-color: black;
+    border: 1px solid white;
+    padding: 10px 10px 0px 10px;
+    z-index: 100;
+}
+
+.menuBox button {
+    display: block;
+    width: 100px;
+    margin-bottom: 10px;
+    background-color: inherit;
+    border: none;
+}

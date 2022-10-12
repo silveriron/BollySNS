@@ -1,0 +1,23 @@
+.textarea {
+    background-color: black;
+    border: none;
+    margin: 0;
+    height: 50px;
+    font-size: 1rem;
+    width: 100%;
+    resize: none;
+    padding-top: 10px;
+}
+
+.textarea::-webkit-scrollbar {
+    display: none;
+}
+
+.textarea:focus {
+    outline: none;
+}
+
+.textarea::placeholder {
+    color: white;
+    text-align: start;
+}

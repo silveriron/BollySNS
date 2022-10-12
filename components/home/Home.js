@@ -1,14 +1,24 @@
 import React from "react";
 import PweetPostForm from "../pweet/PweetPostForm";
 import PweetList from "../pweet/PweetList";
-import Hero from "../hero/Hero";
+import Layout from "../UI/Layout";
+import Link from "next/link";
+import styles from "./Home.module.css";
 
 const Home = () => {
   return (
     <>
-      <Hero />
-      <PweetPostForm />
-      <PweetList category="all" />
+      <Layout>
+        <div className={styles.wrap}>
+          <div className={styles.headerBg}>
+            <Link href="/">
+              <h1>Home</h1>
+            </Link>
+          </div>
+        </div>
+        <PweetPostForm />
+        <PweetList category="all" />
+      </Layout>
     </>
   );
 };

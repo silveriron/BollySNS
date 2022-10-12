@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import Footer from "./Footer";
-import Header from "./Header";
+import NavBar from "./NavBar";
 import { userActions } from "../../store/userSlice";
 import getUser from "../../utility/getUser";
+import styles from "./Layout.module.css";
 
 const Layout = (props) => {
   const dispatch = useDispatch();
@@ -23,10 +23,10 @@ const Layout = (props) => {
   });
 
   return (
-    <>
-      <main>{props.children}</main>
-      {isLogin && <Header />}
-    </>
+    <div className={styles.layout}>
+      <NavBar />
+      <main className={styles.main}>{props.children}</main>
+    </div>
   );
 };
 

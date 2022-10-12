@@ -1,0 +1,28 @@
+.headerBg {
+    height: 60px;
+    display: flex;
+    width: 99%;
+    max-width: 597px;
+    align-items: center;
+    position: fixed;
+    padding-left: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px);
+    margin: 0;
+    z-index: 2;
+}
+
+.wrap {
+    position: relative;
+    width: 100%;
+    height: 60px;
+}
+
+
+.headerBg h1:hover {
+    cursor: pointer;
+}
+
+.container {
+    margin: 10px;
+}

@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import Face from "../../public/face.svg";
+import useDarkMode from "../../hooks/useDarkMode";
 
 const FaceImage = () => {
-  const [isDarkMode, setIsDarkMode] = useState(
-    window.matchMedia("(prefers-color-scheme: dark)").matches
-  );
+  const isDarkMode = useDarkMode();
 
   return <Face fill={isDarkMode ? "white" : "black"} />;
 };

@@ -2,9 +2,13 @@ import React from "react";
 import { doc, deleteDoc } from "firebase/firestore";
 import { db, storage } from "../../utility/firebase";
 import { ref, deleteObject } from "firebase/storage";
+import styles from "./PweetEditButton.module.css";
 
-const PweetEditButton = ({ pweetObj, setEditing }) => {
-  const toggleEditing = () => setEditing((prev) => !prev);
+const PweetEditButton = ({ pweetObj, setEditing, setIsViewMenu }) => {
+  const toggleEditing = () => {
+    setEditing((prev) => !prev);
+    setIsViewMenu((prev) => !prev);
+  };
 
   const deleteHandler = async () => {
     const ok = confirm(
@@ -23,9 +27,9 @@ const PweetEditButton = ({ pweetObj, setEditing }) => {
   };
 
   return (
-    <div>
-      <button onClick={deleteHandler}>Delete Pweet</button>
-      <button onClick={toggleEditing}>Update Pweet</button>
+    <div className={styles.menuBox}>
+      <button onClick={deleteHandler}>Delete</button>
+      <button onClick={toggleEditing}>Update</button>
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import Face from "../../public/face.svg";
 import FaceImage from "./FaceImage";
+import styles from "./HeroImage.module.css";
 
 const HeroImage = ({ data, category }) => {
   const [url, setUrl] = useState();
@@ -14,9 +14,13 @@ const HeroImage = ({ data, category }) => {
   return (
     <>
       {url ? (
-        <Image src={url} width={size} height={size} alt={data.name} />
+        <div className={styles.heroimage}>
+          <Image src={url} width={size} height={size} alt={data.name} />
+        </div>
       ) : (
-        <FaceImage />
+        <div className={styles.heroimage}>
+          <FaceImage />
+        </div>
       )}
     </>
   );

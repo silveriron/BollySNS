@@ -1,10 +1,5 @@
 .btn button {
     display: block;
-    width: 250px;
-    height: 35px;
     background-color: white;
     color: black;
-    border-radius: 50px;
-    margin-bottom: 10px;
-    border: none;
 }
