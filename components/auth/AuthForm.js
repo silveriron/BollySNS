@@ -9,20 +9,12 @@ import { auth } from "../../utility/firebase";
 import styles from "./AuthForm.module.css";
 import Button from "../UI/Button";
 
-const AuthForm = () => {
+const AuthForm = ({ error, errorHandler }) => {
   const [email, onChangeEmail, setEmail] = useInput();
   const [password, onChangePassword, setPassword] = useInput();
-  const [error, setError] = useState("");
   const [newAccount, setNewAccount] = useState(false);
 
   const toggleNewAccount = () => setNewAccount((prev) => !prev);
-
-  const errorHandler = (error) => {
-    let message = error.message;
-    const n = error.message.indexOf(" ");
-    message = message.slice(n);
-    setError(message);
-  };
 
   const authHandler = (method) => {
     let func;

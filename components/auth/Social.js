@@ -11,7 +11,7 @@ import google from "../../public/logo/Google__G__Logo.svg.png";
 import github from "../../public/logo/25231.png";
 import Image from "next/image";
 
-const Social = () => {
+const Social = ({ errorHandler }) => {
   const loginHandler = (e) => {
     const {
       target: { name },
