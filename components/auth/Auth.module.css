@@ -24,6 +24,10 @@
     overflow: hidden;
 }
 
+.lineBox {
+    width: 250px;
+}
+
 .line {
     display: flex;
     flex-basis: 100%;
@@ -34,7 +38,7 @@
 
 .line::before {
     content: '';
-    flex-grow: 0.13;
+    flex-grow: 5;
     height: 1px;
     background-color: white;
     font-size: 0px;
@@ -44,7 +48,7 @@
 
 .line::after {
     content: '';
-    flex-grow: 0.13;
+    flex-grow: 5;
     height: 1px;
     background-color: white;
     font-size: 0px;

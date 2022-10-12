@@ -53,7 +53,7 @@ const AuthForm = () => {
   };
 
   return (
-    <form onSubmit={onSubmitHandler}>
+    <form className={styles.formBox} onSubmit={onSubmitHandler}>
       <Input
         type="text"
         value={email}

@@ -3,3 +3,13 @@
     background-color: white;
     color: black;
 }
+
+.btn div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn span {
+    margin-left: 3px;
+}

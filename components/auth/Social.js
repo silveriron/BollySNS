@@ -7,6 +7,9 @@ import {
 } from "firebase/auth";
 import styles from "./Social.module.css";
 import Button from "../UI/Button";
+import google from "../../public/logo/Google__G__Logo.svg.png";
+import github from "../../public/logo/25231.png";
+import Image from "next/image";
 
 const Social = () => {
   const loginHandler = (e) => {
@@ -27,14 +30,17 @@ const Social = () => {
   return (
     <div className={styles.btn}>
       <Button name="google" onClick={loginHandler}>
-        Google 계정으로 가입하기
+        <div>
+          <Image src={google} width={20} height={20} alt="google logo" />
+          <span>Google 계정으로 가입하기</span>
+        </div>
       </Button>
-      <button name="google" onClick={loginHandler}>
-        Google 계정으로 가입하기
-      </button>
-      <button name="github" onClick={loginHandler}>
-        Github 계정으로 가입하기
-      </button>
+      <Button name="github" onClick={loginHandler}>
+        <div>
+          <Image src={github} width={20} height={20} alt="github logo" />
+          <span>Github 계정으로 가입하기</span>
+        </div>
+      </Button>
     </div>
   );
 };

@@ -26,7 +26,7 @@ const Auth = () => {
         <h1>지금 일어나고 있는 일</h1>
         <p>오늘 트위터에 가입하세요.</p>
         <Social />
-        <div>
+        <div className={styles.lineBox}>
           <div className={styles.line}> 또는 </div>
         </div>
         <AuthForm />

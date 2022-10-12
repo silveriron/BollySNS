@@ -8,3 +8,7 @@
     cursor: pointer;
     color: rgb(49, 150, 218);
 }
+
+.formBox input {
+    display: block;
+}
