@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import HeroImage from "../UI/HeroImage";
+import HeroImage from "./HeroImage";
 
 const Hero = () => {
   const user = useSelector((state) => state.user);

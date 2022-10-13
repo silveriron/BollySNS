@@ -4,8 +4,9 @@ const useDarkMode = () => {
   const [isDarkMode, setIsDarkMode] = useState(
     window.matchMedia("(prefers-color-scheme: dark)").matches
   );
+  const fill = isDarkMode ? "white" : "black";
 
-  return isDarkMode;
+  return fill;
 };
 
 export default useDarkMode;

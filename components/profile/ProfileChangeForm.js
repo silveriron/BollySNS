@@ -9,48 +9,72 @@ import ImagePreview from "../UI/ImagePreview";
 import uploadImage from "../../utility/uploadImage";
 import { auth } from "../../utility/firebase";
 import { useRouter } from "next/router";
+import Hero from "../UI/Hero";
+import styles from "./ProfileChangeForm.module.css";
+import Edit from "../../public/edit_FILL0_wght400_GRAD0_opsz24.svg";
+import useDarkMode from "../../hooks/useDarkMode";
 
 const ProfileChangeForm = () => {
   const user = useSelector((state) => state.user);
   const router = useRouter();
   const [newUserName, onChangeUserName] = useInput(user.name);
   const [image, setImage, imageUploadHandler] = useImageUpload();
+  const fill = useDarkMode();
 
   const dispatch = useDispatch();
 
-  const nameChangeHandler = async (e) => {
+  const profileUpdate = (updateObj) => {
+    updateProfile(auth.currentUser, updateObj)
+      .then(() => {
+        if (updateObj.displayName) {
+          dispatch(
+            userActions.isLogin({ ...user, name: updateObj.displayName })
+          );
+        } else {
+          console.log(updateObj.photoURL);
+          dispatch(
+            userActions.isLogin({ ...user, photoURL: updateObj.photoURL })
+          );
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const profileNameChange = async (e) => {
     e.preventDefault();
-    if (user.name === newUserName && !image) {
-      return;
-    } else if (user.name !== newUserName && !image) {
-      dispatch(userActions.isLogin({ ...user, name: newUserName }));
-      updateProfile(auth.currentUser, {
-        displayName: newUserName,
-      }).catch((error) => {
-        console.log(error);
-      });
-    } else if (image) {
-      const [_, imageUrl] = await uploadImage(image, user.uid, "profile");
-      dispatch(
-        userActions.isLogin({ ...user, name: newUserName, photoURL: imageUrl })
-      );
-      updateProfile(auth.currentUser, {
-        displayName: newUserName,
-        photoURL: imageUrl,
-      }).catch((error) => {
-        console.log(error);
-      });
-    }
-    setImage(null);
+    profileUpdate({ displayName: newUserName });
+  };
+
+  const profilePhotoChange = async (e) => {
+    imageUploadHandler(e);
+    const [_, imageUrl] = await uploadImage(image, user.uid, "profile");
+    profileUpdate({ photoURL: imageUrl });
   };
 
   return (
-    <form onSubmit={nameChangeHandler}>
-      {image && <ImagePreview image={image} setImage={setImage} />}
-      <input type="text" value={newUserName} onChange={onChangeUserName} />
-      <input type="file" accept="image/*" onChange={imageUploadHandler} />
-      <input type="submit" value="Change" />
-    </form>
+    <div className={styles.profileBox}>
+      <h1>{user.name}님의 프로필</h1>
+      <form className={styles.profileform} onSubmit={profileNameChange}>
+        <div className={styles.profilePhoto}>
+          <Hero />
+          <label htmlFor="photo">Edit</label>
+          <input
+            id="photo"
+            type="file"
+            accept="image/*"
+            onChange={profilePhotoChange}
+          />
+        </div>
+        <div className={styles.profileName}>
+          <input type="text" value={newUserName} onChange={onChangeUserName} />
+          <button type="submit">
+            <Edit fill={fill} />
+          </button>
+        </div>
+      </form>
+    </div>
   );
 };
 

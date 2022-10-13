@@ -8,11 +8,13 @@ import {
 import { auth } from "../../utility/firebase";
 import styles from "./AuthForm.module.css";
 import Button from "../UI/Button";
+import { useRouter } from "next/router";
 
 const AuthForm = ({ error, errorHandler }) => {
   const [email, onChangeEmail, setEmail] = useInput();
   const [password, onChangePassword, setPassword] = useInput();
   const [newAccount, setNewAccount] = useState(false);
+  const router = useRouter();
 
   const toggleNewAccount = () => setNewAccount((prev) => !prev);
 
@@ -28,6 +30,7 @@ const AuthForm = ({ error, errorHandler }) => {
       .then(() => {
         setEmail("");
         setPassword("");
+        router.push("/");
       })
       .catch((error) => {
         errorHandler(error);

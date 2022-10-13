@@ -4,7 +4,7 @@ import useInput from "../../hooks/useInput";
 import pweetSubmit from "../../utility/pweetSubmit";
 import { useSelector } from "react-redux";
 import ImagePreview from "../UI/ImagePreview";
-import Hero from "../hero/Hero";
+import Hero from "../UI/Hero";
 import styles from "./PweetPostForm.module.css";
 import useDarkMode from "../../hooks/useDarkMode";
 import Button from "../UI/Button";
@@ -16,6 +16,13 @@ const PweetPostForm = () => {
   const [image, setImage, imageUploadHandler] = useImageUpload();
   const user = useSelector((state) => state.user);
   const isDarkMode = useDarkMode();
+  const randomNumber = Math.floor(Math.random() * 3);
+
+  const placeholderList = [
+    "어떤 생각을 하고 계시나요?",
+    "오늘은 무슨 일이 있었나요?",
+    "오늘 있었던 신나는 일을 공유해보세요.",
+  ];
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
@@ -32,7 +39,7 @@ const PweetPostForm = () => {
         </div>
         <div className={styles.postTextBox}>
           <TextArea
-            placeholder="어떤 생각을 하고 계시나요?"
+            placeholder={placeholderList[randomNumber]}
             onChange={onChangePweet}
             value={pweet}
           />

@@ -1,0 +1,58 @@
+.profileBox {
+    padding: 0 20px 30px;
+    border-bottom: 1px solid var(--line-color);
+}
+
+.profileBox h1 {
+    margin-bottom: 10px;
+}
+
+.profileform {
+    display: flex;
+}
+
+.profilePhoto {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin-right: 50px;
+}
+
+.profilePhoto label {
+    position: absolute;
+    width: 100px;
+    padding-top: 78px;
+    border-radius: 50px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.05);
+    top: 0;
+    left: 10px;
+    color: white
+}
+
+.profilePhoto label:hover {
+    cursor: pointer;
+}
+
+.profilePhoto input {
+    display: none;
+}
+
+.profileName {
+    display: flex;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.profileName input {
+    background-color: inherit;
+    border: none;
+    font-size: 1rem;
+    width: 60%;
+}
+
+.profileName button {
+    background-color: inherit;
+    border: none;
+
+}

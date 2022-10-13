@@ -4,7 +4,9 @@ const useInput = (initialValue) => {
   const [val, setVal] = useState(initialValue);
 
   const onChange = (e) => {
-    setVal(e.target.value);
+    let value = e.target.value;
+    value = value.replaceAll("<br/>", "\r\n");
+    setVal(value);
   };
 
   return [val, onChange, setVal];

@@ -1,5 +1,6 @@
 :root {
-  --line-color: rgba(255, 255, 255, 0.3)
+  --line-color: rgba(255, 255, 255, 0.3);
+  --main-color: rgb(29, 155, 240)
 }
 
 html,

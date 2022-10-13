@@ -6,7 +6,6 @@ import styles from "./HeroImage.module.css";
 const HeroImage = ({ data, category }) => {
   const [url, setUrl] = useState();
   const size = category === "hero" ? "100" : "50";
-
   useEffect(() => {
     setUrl(category === "hero" ? data.photoURL : data.creatorImage);
   }, [data, category]);
@@ -14,7 +13,10 @@ const HeroImage = ({ data, category }) => {
   return (
     <>
       {url ? (
-        <div className={styles.heroimage}>
+        <div
+          className={styles.heroimage}
+          style={{ width: `${size}px`, height: `${size}px` }}
+        >
           <Image src={url} width={size} height={size} alt={data.name} />
         </div>
       ) : (
