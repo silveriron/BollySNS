@@ -5,18 +5,24 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { userActions } from "../../store/userSlice";
 import useImageUpload from "../../hooks/useImageUpload";
-import ImagePreview from "../UI/ImagePreview";
 import uploadImage from "../../utility/uploadImage";
 import { auth } from "../../utility/firebase";
-import { useRouter } from "next/router";
 import Hero from "../UI/Hero";
 import styles from "./ProfileChangeForm.module.css";
 import Edit from "../../public/edit_FILL0_wght400_GRAD0_opsz24.svg";
 import useDarkMode from "../../hooks/useDarkMode";
+import {
+  collection,
+  query,
+  where,
+  getDocs,
+  updateDoc,
+  doc,
+} from "firebase/firestore";
+import { db } from "../../utility/firebase";
 
 const ProfileChangeForm = () => {
   const user = useSelector((state) => state.user);
-  const router = useRouter();
   const [newUserName, onChangeUserName] = useInput(user.name);
   const [image, setImage, imageUploadHandler] = useImageUpload();
   const fill = useDarkMode();
@@ -36,6 +42,18 @@ const ProfileChangeForm = () => {
             userActions.isLogin({ ...user, photoURL: updateObj.photoURL })
           );
         }
+
+        const pweetRef = collection(db, "pweet");
+        const q = query(pweetRef, where("creatorId", "==", user.uid));
+        getDocs(q).then((data) => {
+          data.docs.map((d) => {
+            const ref = doc(db, "pweet", d.id);
+            updateDoc(ref, {
+              creatorName: user.name,
+              creatorImage: user.photoURL,
+            });
+          });
+        });
       })
       .catch((error) => {
         console.log(error);
