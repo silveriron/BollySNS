@@ -26,6 +26,7 @@
     flex: 1;
     background-image: url('../../public/img/background.jpg');
     background-size: cover;
+    background-position-x: -200px;
 }
 
 .lineBox {
@@ -61,7 +62,7 @@
 }
 
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 960px) {
     .imgDiv {
         display: none;
     }

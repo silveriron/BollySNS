@@ -20,8 +20,8 @@ const Auth = () => {
       <div className={styles.imgDiv}></div>
       <section className={styles.container}>
         <Image src={logo} alt="bolly logo" />
-        <h1>지금 하고 싶은 이야기</h1>
-        <p>오늘 여기에 가입하세요.</p>
+        <h1>자랑하고 싶은 친구들의 이야기</h1>
+        <p>오늘 볼리SNS에 가입하세요.</p>
         <Social errorHandler={errorHandler} />
         <div className={styles.lineBox}>
           <div className={styles.line}> 또는 </div>

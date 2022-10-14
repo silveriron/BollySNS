@@ -21,7 +21,7 @@ const index = () => {
         />
         <meta
           property="og:image"
-          content="https://firebasestorage.googleapis.com/v0/b/twitter-clone-2ca69.appspot.com/o/public%2FogImage.jpg?alt=media&token=744ac12d-de6e-47a5-8efd-bae8f96f1bab"
+          content="https://firebasestorage.googleapis.com/v0/b/twitter-clone-2ca69.appspot.com/o/public%2FogImage.jpg?alt=media&token=8387a416-b7a9-48eb-aed5-f1a41dc431b2"
         />
       </Head>
       <Home />
