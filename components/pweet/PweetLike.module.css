@@ -1,0 +1,8 @@
+.likes {
+    display: inline-block;
+}
+
+.likes span {
+    margin: 0 10px 50px;
+    padding-bottom: 5px;
+}

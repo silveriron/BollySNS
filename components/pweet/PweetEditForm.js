@@ -63,12 +63,12 @@ const PweetEditForm = ({ pweetObj, setEditing, user }) => {
       <div className={styles.postBtnBox}>
         <ImageUploadBtn onChange={imageUploadHandler} />
         <Button
-          style={{ background: "white", color: "black" }}
+          style={{ background: "rgba(255, 255, 255, 0.5)", color: "white" }}
           onClick={toggleEditHandler}
         >
-          Cancle
+          취소
         </Button>
-        <Button type="submit">Tweet</Button>
+        <Button type="submit">수정</Button>
       </div>
     </form>
   );

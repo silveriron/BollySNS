@@ -38,3 +38,12 @@
     top: 30px;
     z-index: 1;
 }
+
+.iconBox {
+    display: flex;
+    align-items: center;
+}
+
+.iconBox p {
+    margin: 0 10px 0 5px;
+}

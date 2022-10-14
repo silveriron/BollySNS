@@ -19,9 +19,8 @@ const TextArea = ({ placeholder, onChange, value }) => {
       maxLength={120}
       onKeyUp={autoResizeTextarea}
       onKeyDown={autoResizeTextarea}
-    >
-      {value}
-    </textarea>
+      value={value}
+    />
   );
 };
 

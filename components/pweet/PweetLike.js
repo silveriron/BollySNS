@@ -48,7 +48,7 @@ const PweetLike = ({ isOwner, user, pweetObj }) => {
           )}
         </>
       )}
-      <span>{likes}</span>
+      <p>{likes}</p>
     </>
   );
 };

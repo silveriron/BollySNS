@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import useImageUpload from "../../hooks/useImageUpload";
 import useInput from "../../hooks/useInput";
 import pweetSubmit from "../../utility/pweetSubmit";
@@ -15,6 +15,7 @@ const PweetPostForm = () => {
   const [image, setImage, imageUploadHandler] = useImageUpload();
   const user = useSelector((state) => state.user);
   const randomNumber = Math.floor(Math.random() * 3);
+  const [postStatus, setPostStatus] = useState();
 
   const placeholderList = [
     "어떤 생각을 하고 계시나요?",
@@ -25,32 +26,33 @@ const PweetPostForm = () => {
   const onSubmitHandler = async (e) => {
     e.preventDefault();
     await pweetSubmit(image, pweet, user);
-    const textarea = document.querySelector("textarea");
-    textarea.value = "";
+    setPweet("");
     setImage(null);
   };
 
   return (
-    <form className={styles.formContainer} onSubmit={onSubmitHandler}>
-      <div className={styles.postBox}>
-        <div>
-          <Hero />
+    <>
+      <form className={styles.formContainer} onSubmit={onSubmitHandler}>
+        <div className={styles.postBox}>
+          <div>
+            <Hero />
+          </div>
+          <div className={styles.postTextBox}>
+            <TextArea
+              placeholder={placeholderList[randomNumber]}
+              onChange={onChangePweet}
+              value={pweet}
+            />
+            {image && <ImagePreview image={image} setImage={setImage} />}
+          </div>
         </div>
-        <div className={styles.postTextBox}>
-          <TextArea
-            placeholder={placeholderList[randomNumber]}
-            onChange={onChangePweet}
-            value={pweet}
-          />
-          {image && <ImagePreview image={image} setImage={setImage} />}
-        </div>
-      </div>
 
-      <div className={styles.postBtnBox}>
-        <ImageUploadBtn onChange={imageUploadHandler} />
-        <Button type="submit">Tweet</Button>
-      </div>
-    </form>
+        <div className={styles.postBtnBox}>
+          <ImageUploadBtn onChange={imageUploadHandler} />
+          <Button type="submit">글쓰기</Button>
+        </div>
+      </form>
+    </>
   );
 };
 
