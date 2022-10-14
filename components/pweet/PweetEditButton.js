@@ -12,7 +12,7 @@ const PweetEditButton = ({ pweetObj, setEditing, setIsViewMenu }) => {
 
   const deleteHandler = async () => {
     const ok = confirm(
-      "정말 삭제하시겠습니까? 삭제 후에는 복구가 불가능 합니다."
+      "정말 삭제하시겠습니까? \n삭제 후에는 복구가 불가능 합니다."
     );
     if (ok) {
       if (pweetObj.imageUrl) {
@@ -28,8 +28,8 @@ const PweetEditButton = ({ pweetObj, setEditing, setIsViewMenu }) => {
 
   return (
     <div className={styles.menuBox}>
-      <button onClick={deleteHandler}>Delete</button>
-      <button onClick={toggleEditing}>Update</button>
+      <button onClick={deleteHandler}>삭제</button>
+      <button onClick={toggleEditing}>수정</button>
     </div>
   );
 };

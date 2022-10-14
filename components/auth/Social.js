@@ -41,7 +41,7 @@ const Social = ({ errorHandler }) => {
           height={20}
           alt="google logo"
         />
-        Google 계정으로 가입하기
+        Google 계정으로 로그인
       </Button>
       <Button name="github" onClick={loginHandler}>
         <Image
@@ -51,7 +51,7 @@ const Social = ({ errorHandler }) => {
           height={20}
           alt="github logo"
         />
-        Github 계정으로 가입하기
+        Github 계정으로 로그인
       </Button>
     </div>
   );
