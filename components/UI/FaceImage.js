@@ -1,11 +1,8 @@
 import React from "react";
 import Face from "../../public/face.svg";
-import useDarkMode from "../../hooks/useDarkMode";
 
 const FaceImage = () => {
-  const isDarkMode = useDarkMode();
-
-  return <Face fill={isDarkMode ? "white" : "black"} />;
+  return <Face fill="white" />;
 };
 
 export default FaceImage;

@@ -6,7 +6,6 @@ import { useSelector } from "react-redux";
 import ImagePreview from "../UI/ImagePreview";
 import Hero from "../UI/Hero";
 import styles from "./PweetPostForm.module.css";
-import useDarkMode from "../../hooks/useDarkMode";
 import Button from "../UI/Button";
 import TextArea from "../UI/TextArea";
 import ImageUploadBtn from "../UI/ImageUploadBtn";
@@ -15,7 +14,6 @@ const PweetPostForm = () => {
   const [pweet, onChangePweet, setPweet] = useInput();
   const [image, setImage, imageUploadHandler] = useImageUpload();
   const user = useSelector((state) => state.user);
-  const isDarkMode = useDarkMode();
   const randomNumber = Math.floor(Math.random() * 3);
 
   const placeholderList = [

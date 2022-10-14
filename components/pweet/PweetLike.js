@@ -6,9 +6,6 @@ import { db } from "../../utility/firebase";
 import styles from "./PweetLike.module.css";
 
 const PweetLike = ({ isOwner, user, pweetObj }) => {
-  const [isDarkMode, setIsDarkMode] = useState(
-    window.matchMedia("(prefers-color-scheme: dark)").matches
-  );
   const [isLiked, setIsLiked] = useState();
   const [likes, setLikes] = useState();
 
@@ -41,19 +38,13 @@ const PweetLike = ({ isOwner, user, pweetObj }) => {
 
   return (
     <>
-      {isOwner && <ThumbUp_fill fill={isDarkMode ? "white" : "black"} />}
+      {isOwner && <ThumbUp_fill fill="white" />}
       {isOwner === false && (
         <>
           {isLiked ? (
-            <ThumbUp_fill
-              onClick={unLikeHandler}
-              fill={isDarkMode ? "white" : "black"}
-            />
+            <ThumbUp_fill onClick={unLikeHandler} fill="white" />
           ) : (
-            <ThumbUp
-              onClick={likeHandler}
-              fill={isDarkMode ? "white" : "black"}
-            />
+            <ThumbUp onClick={likeHandler} fill="white" />
           )}
         </>
       )}

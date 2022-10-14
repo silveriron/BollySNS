@@ -45,14 +45,15 @@
 }
 
 .profileName input {
-    background-color: inherit;
+    background-color: rgb(0, 0, 0);
     border: none;
     font-size: 1rem;
     width: 60%;
+    color: var(--font-color);
 }
 
 .profileName button {
-    background-color: inherit;
+    background-color: rgb(0, 0, 0);
     border: none;
 
 }

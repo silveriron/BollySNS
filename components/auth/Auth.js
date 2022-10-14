@@ -3,14 +3,10 @@ import AuthForm from "./AuthForm";
 import Social from "./Social";
 import logo from "../../public/favicon.ico";
 import Image from "next/image";
-import bg from "../../public/img/lohp_1302x955.png";
 import styles from "./Auth.module.css";
 
 const Auth = () => {
   const [error, setError] = useState("");
-
-  const w = window.screen.availWidth / 2;
-  const h = window.screen.availHeight;
 
   const errorHandler = (error) => {
     let message = error.message;
@@ -21,19 +17,11 @@ const Auth = () => {
 
   return (
     <div className={styles.authMainContainer}>
-      <div className={styles.imgDiv}>
-        <Image
-          src={bg}
-          width={w}
-          height={h}
-          layout="fixed"
-          alt="background image"
-        />
-      </div>
+      <div className={styles.imgDiv}></div>
       <section className={styles.container}>
         <Image src={logo} alt="bolly logo" />
-        <h1>지금 일어나고 있는 일</h1>
-        <p>오늘 트위터에 가입하세요.</p>
+        <h1>지금 하고 싶은 이야기</h1>
+        <p>오늘 여기에 가입하세요.</p>
         <Social errorHandler={errorHandler} />
         <div className={styles.lineBox}>
           <div className={styles.line}> 또는 </div>

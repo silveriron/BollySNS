@@ -7,13 +7,11 @@ import HeroImage from "../UI/HeroImage";
 import styles from "./PweetDetail.module.css";
 import elapsedTime from "../../utility/elapsedTime";
 import Horiz from "../../public/more_horiz_FILL0_wght400_GRAD0_opsz20.svg";
-import useDarkMode from "../../hooks/useDarkMode";
 
 const PweetDetail = ({ pweetObj, user }) => {
   const [editing, setEditing] = useState(false);
   const [isViewMenu, setIsViewMenu] = useState(false);
   const isOwner = pweetObj.creatorId === user.uid;
-  const isDarkMode = useDarkMode();
 
   const date = pweetObj.createAt.toDate();
 
@@ -28,7 +26,7 @@ const PweetDetail = ({ pweetObj, user }) => {
       <div className={styles.pweetInfoDiv}>
         {isOwner && (
           <div className={styles.horiz}>
-            <Horiz fill={isDarkMode ? "white" : "black"} onClick={toggleMenu} />
+            <Horiz fill="white" onClick={toggleMenu} />
           </div>
         )}
         {isViewMenu && (

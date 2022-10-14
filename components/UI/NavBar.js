@@ -10,20 +10,16 @@ import logo from "../../public/favicon.ico";
 import Home from "../../public/home_FILL1_wght400_GRAD0_opsz40.svg";
 import Profile from "../../public/person_FILL1_wght400_GRAD0_opsz40.svg";
 import Image from "next/image";
-import useDarkMode from "../../hooks/useDarkMode";
 import Button from "./Button";
 
 const NavBar = () => {
   const router = useRouter();
   const dispatch = useDispatch();
-  const isDarkMode = useDarkMode();
-
-  const fill = isDarkMode ? "white" : "black";
 
   const logOutHandler = () => {
     signOut(auth);
-    dispatch(userActions.isLogin());
     router.push("/");
+    dispatch(userActions.isLogin());
   };
 
   return (
@@ -39,7 +35,7 @@ const NavBar = () => {
         <li>
           <Link href="/">
             <a className={styles.link}>
-              <Home fill={fill} />
+              <Home fill="white" />
               <span>Home</span>
             </a>
           </Link>
@@ -47,7 +43,7 @@ const NavBar = () => {
         <li>
           <Link href="/profile">
             <a className={styles.link}>
-              <Profile fill={fill} />
+              <Profile fill="white" />
               <span>Profile</span>
             </a>
           </Link>

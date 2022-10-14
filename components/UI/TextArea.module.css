@@ -1,5 +1,6 @@
 .textarea {
     background-color: black;
+    color: var(--font-color);
     border: none;
     margin: 0;
     height: 50px;

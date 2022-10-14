@@ -12,7 +12,7 @@ import { userActions } from "../../store/userSlice";
 import { useRouter } from "next/router";
 import logo from "../../public/favicon.ico";
 
-const Home = (props) => {
+const Home = () => {
   const [init, setInit] = useState(false);
   const dispatch = useDispatch();
   const router = useRouter();

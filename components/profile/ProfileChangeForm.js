@@ -10,7 +10,6 @@ import { auth } from "../../utility/firebase";
 import Hero from "../UI/Hero";
 import styles from "./ProfileChangeForm.module.css";
 import Edit from "../../public/edit_FILL0_wght400_GRAD0_opsz24.svg";
-import useDarkMode from "../../hooks/useDarkMode";
 import {
   collection,
   query,
@@ -25,7 +24,6 @@ const ProfileChangeForm = () => {
   const user = useSelector((state) => state.user);
   const [newUserName, onChangeUserName] = useInput(user.name);
   const [image, setImage, imageUploadHandler] = useImageUpload();
-  const fill = useDarkMode();
 
   const dispatch = useDispatch();
 
@@ -88,7 +86,7 @@ const ProfileChangeForm = () => {
         <div className={styles.profileName}>
           <input type="text" value={newUserName} onChange={onChangeUserName} />
           <button type="submit">
-            <Edit fill={fill} />
+            <Edit fill="white" />
           </button>
         </div>
       </form>
