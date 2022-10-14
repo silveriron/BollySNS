@@ -41,16 +41,20 @@ const ProfileChangeForm = () => {
           );
         }
 
+        const name = updateObj.displayName ? updateObj.displayName : user.name;
+        const url = updateObj.photoURL ? updateObj.photoURL : user.photoURL;
+
         const pweetRef = collection(db, "pweet");
         const q = query(pweetRef, where("creatorId", "==", user.uid));
         getDocs(q).then((data) => {
           data.docs.map((d) => {
             const ref = doc(db, "pweet", d.id);
             updateDoc(ref, {
-              creatorName: user.name,
-              creatorImage: user.photoURL,
+              creatorName: name,
+              creatorImage: url,
             });
           });
+          console.log("change done");
         });
       })
       .catch((error) => {
@@ -65,6 +69,7 @@ const ProfileChangeForm = () => {
 
   const profilePhotoChange = async (e) => {
     imageUploadHandler(e);
+    console.log(image);
     const [_, imageUrl] = await uploadImage(image, user.uid, "profile");
     profileUpdate({ photoURL: imageUrl });
   };

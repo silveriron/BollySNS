@@ -21,16 +21,13 @@ const getPweet = (category, setPweets, user) => {
     });
   } else if (category === "my") {
     const myPweetRef = collection(db, "pweet");
-    const q = query(
-      myPweetRef,
-      where("creatorId", "==", user.uid),
-      orderBy("createAt", "desc")
-    );
+    const q = query(myPweetRef, where("creatorId", "==", user.uid));
     onSnapshot(q, (snapshot) => {
       const pweetArray = snapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
       }));
+      pweetArray.sort((a, b) => b.createAt - a.createAt);
       setPweets(pweetArray);
     });
   }
