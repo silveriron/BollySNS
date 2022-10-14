@@ -6,12 +6,14 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 import styles from "./Social.module.css";
+import { useRouter } from "next/router";
 import Button from "../UI/Button";
 import google from "../../public/logo/Google__G__Logo.svg.png";
 import github from "../../public/logo/25231.png";
 import Image from "next/image";
 
 const Social = ({ errorHandler }) => {
+  const router = useRouter();
   const loginHandler = (e) => {
     const {
       target: { name },
@@ -22,9 +24,13 @@ const Social = ({ errorHandler }) => {
     } else {
       provider = new GithubAuthProvider();
     }
-    signInWithPopup(auth, provider).catch((error) => {
-      errorHandler(error);
-    });
+    signInWithPopup(auth, provider)
+      .then(() => {
+        router.push("/");
+      })
+      .catch((error) => {
+        errorHandler(error);
+      });
   };
 
   return (
