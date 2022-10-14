@@ -50,7 +50,7 @@ const Home = () => {
           <PweetList category="all" />
         </Layout>
       ) : (
-        <div>
+        <div className={styles.loadingBox}>
           <Image src={logo} alt="logo" />
         </div>
       )}

@@ -26,3 +26,10 @@
 .container {
     margin: 10px;
 }
+
+.loadingBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
