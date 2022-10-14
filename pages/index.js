@@ -6,6 +6,10 @@ const index = () => {
     <>
       <Head>
         <title>BollySNS</title>
+        <meta
+          property="description"
+          content="볼리SNS는 사랑하는 애완동물의 이야기를 서로 자랑할 수 있는 소셜 네트워크 서비스입니다."
+        />
         <meta property="og:title" content="BollySNS" />
         <meta
           property="og:description"
@@ -13,7 +17,7 @@ const index = () => {
         />
         <meta
           property="og:url"
-          content="https://www.imdb.com/title/tt0117500/"
+          content="https://bolly-sns-nine-beta.vercel.app/"
         />
         <meta
           property="og:image"

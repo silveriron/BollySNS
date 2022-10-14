@@ -33,7 +33,7 @@ const Home = () => {
         router.push("/auth");
       }
     });
-  }, [dispatch]);
+  }, [dispatch, router]);
 
   return (
     <>

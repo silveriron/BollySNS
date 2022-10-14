@@ -12,7 +12,7 @@ const PweetList = ({ category }) => {
     getUser().then((user) => {
       getPweet(category, setPweets, user);
     });
-  }, []);
+  }, [category]);
 
   return (
     <ul>
