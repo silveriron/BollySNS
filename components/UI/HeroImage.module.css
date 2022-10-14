@@ -6,3 +6,10 @@
     margin: 10px;
     display: block
 }
+
+@media screen and (max-width: 600px) {
+    .heroimage {
+        width: 30px;
+        height: 30px;
+    }
+}

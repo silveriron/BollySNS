@@ -24,8 +24,9 @@ const PweetPostForm = () => {
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
-    pweetSubmit(image, pweet, user);
-    setPweet("");
+    await pweetSubmit(image, pweet, user);
+    const textarea = document.querySelector("textarea");
+    textarea.value = "";
     setImage(null);
   };
 
