@@ -15,13 +15,11 @@ import Image from "next/image";
 const Social = ({ errorHandler }) => {
   const router = useRouter();
   const loginHandler = (e) => {
-    const {
-      target: { name },
-    } = e;
+    const name = e.target.name;
     let provider;
     if (name === "google") {
       provider = new GoogleAuthProvider();
-    } else {
+    } else if (name === "github") {
       provider = new GithubAuthProvider();
     }
     signInWithPopup(auth, provider)
@@ -36,16 +34,24 @@ const Social = ({ errorHandler }) => {
   return (
     <div className={styles.btn}>
       <Button name="google" onClick={loginHandler}>
-        <div>
-          <Image src={google} width={20} height={20} alt="google logo" />
-          <span>Google 계정으로 가입하기</span>
-        </div>
+        <Image
+          name="google"
+          src={google}
+          width={20}
+          height={20}
+          alt="google logo"
+        />
+        Google 계정으로 가입하기
       </Button>
       <Button name="github" onClick={loginHandler}>
-        <div>
-          <Image src={github} width={20} height={20} alt="github logo" />
-          <span>Github 계정으로 가입하기</span>
-        </div>
+        <Image
+          name="github"
+          src={github}
+          width={20}
+          height={20}
+          alt="github logo"
+        />
+        Github 계정으로 가입하기
       </Button>
     </div>
   );
