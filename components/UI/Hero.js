@@ -6,7 +6,7 @@ const Hero = () => {
   const user = useSelector((state) => state.user);
   return (
     <>
-      <HeroImage data={user} category="hero" />
+      <HeroImage data={user} category="hero" size="100" />
     </>
   );
 };

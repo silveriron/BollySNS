@@ -1,4 +1,4 @@
-import { db, storage } from "./firebase";
+import { db } from "./firebase";
 import { collection, addDoc } from "firebase/firestore";
 import uploadImage from "./uploadImage";
 
@@ -14,6 +14,7 @@ const pweetSubmit = async (image, pweet, user) => {
     imageUrl,
     imageName,
     liked: [],
+    comments: [],
   };
   try {
     await addDoc(collection(db, "pweet"), pweetObj);

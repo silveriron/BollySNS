@@ -15,7 +15,6 @@ const PweetPostForm = () => {
   const [image, setImage, imageUploadHandler] = useImageUpload();
   const user = useSelector((state) => state.user);
   const randomNumber = Math.floor(Math.random() * 3);
-  const [postStatus, setPostStatus] = useState();
 
   const placeholderList = [
     "어떤 생각을 하고 계시나요?",

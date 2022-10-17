@@ -47,3 +47,11 @@
 .iconBox p {
     margin: 0 10px 0 5px;
 }
+
+.iconBox span {
+    margin-left: 5px;
+}
+
+.iconBox svg:hover {
+    cursor: pointer;
+}

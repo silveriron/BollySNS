@@ -3,10 +3,9 @@ import Image from "next/image";
 import FaceImage from "./FaceImage";
 import styles from "./HeroImage.module.css";
 
-const HeroImage = ({ data, category }) => {
+const HeroImage = ({ data, category, size }) => {
   const [url, setUrl] = useState();
-  const boxSize = category === "hero" && "100";
-  const size = category === "hero" ? "100" : "50";
+
   useEffect(() => {
     setUrl(category === "hero" ? data.photoURL : data.creatorImage);
   }, [data, category]);
@@ -16,9 +15,7 @@ const HeroImage = ({ data, category }) => {
       {url ? (
         <div
           className={styles.heroimage}
-          style={
-            category ? { width: `${boxSize}px`, height: `${boxSize}px` } : null
-          }
+          style={{ width: `${size}px`, height: `${size}px` }}
         >
           <Image src={url} width={size} height={size} alt={data.name} />
         </div>

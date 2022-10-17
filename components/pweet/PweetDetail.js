@@ -8,12 +8,13 @@ import styles from "./PweetDetail.module.css";
 import elapsedTime from "../../utility/elapsedTime";
 import Horiz from "../../public/more_horiz_FILL0_wght400_GRAD0_opsz20.svg";
 import Comment from "../../public/chat_FILL1_wght400_GRAD0_opsz24.svg";
-import Commnets from "./Commnets";
+import Commnets from "../comments/Commnets";
 
 const PweetDetail = ({ pweetObj, user }) => {
   const [editing, setEditing] = useState(false);
   const [isViewMenu, setIsViewMenu] = useState(false);
   const [openComment, setOpenComment] = useState(false);
+  const [comments, setComments] = useState();
   const isOwner = pweetObj.creatorId === user.uid;
 
   const date = pweetObj.createAt.toDate();
@@ -45,7 +46,7 @@ const PweetDetail = ({ pweetObj, user }) => {
             />
           </div>
         )}
-        <HeroImage data={pweetObj} category="pweet" />
+        <HeroImage data={pweetObj} category="pweet" size="50" />
         <div className={styles.pweetTextDiv}>
           <p>
             <span>{pweetObj.creatorName}</span>
@@ -74,8 +75,9 @@ const PweetDetail = ({ pweetObj, user }) => {
           <div className={styles.iconBox}>
             <PweetLike isOwner={isOwner} user={user} pweetObj={pweetObj} />
             <Comment onClick={toggleComment} fill="white" />
+            <span>{pweetObj.comments ? pweetObj.comments.length : 0}</span>
           </div>
-          {openComment && <Commnets pweetObj={pweetObj} />}
+          {openComment && <Commnets pweetObj={pweetObj} comments={comments} />}
         </div>
       </div>
     </li>
